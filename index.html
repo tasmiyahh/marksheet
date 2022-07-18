@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("back3.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5C9AD4;
+            text-decoration: underline;
+        }
+
+        .main {
+            display: flex;
+            align-items: center;
+            margin: 50px;
+            flex-direction: column;
+
+
+        }
+
+        table,
+        td,
+        tr,
+        th {
+            border: 2px solid white;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+            text-transform: capitalize;
+
+        }
+
+        input {
+            border: 0px;
+        }
+
+        button {
+            border-radius: 3px;
+            border: 1px solid green;
+            background-color: green;
+            font-size: large;
+            font-weight: bold;
+            color: white;
+        }
+
+        #reset {
+            border-radius: 3px;
+            border: 1px solid red;
+            background-color: red;
+            font-size: large;
+            font-weight: bold;
+            color: white;
+        }
+
+
+        button:hover {
+            box-shadow: 1px 1px 3px 1px black;
+        }
+
+        #reset:hover {
+            box-shadow: 1px 1px 3px 1px black;
+        }
+
+        th {
+            background-color: #5C9AD4;
+        }
+
+        td:hover {
+            background-color: #D4DDED;
+        }
+
+        input:hover {
+            background-color: #D4DDED;
+        }
+
+        td,
+        input {
+            background-color: #E9ECF5;
+        }
+
+        #totalmarks,
+        #obtainedmarks,
+        #Percentage,
+        #Grade {
+            padding: 10px;
+            font-weight: bolder;
+            color: #5C9AD4;
+            text-decoration: underline black;
+
+        }
+
+        @media only screen and (max-width: 600px) {
+            .main {
+                align-items: flex-start;
+                margin: 5px 0px;
+            }
+
+            body {
+                background-image: url("");
+                background-color: #8DCCBC;
+            }
+
+            ;
+
+            h1 {
+                text-align: center;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MARK<span style="color: black;">SHEET</span></h1>
+    <div class="main">
+
+        <table onkeypress="result()">
+            <form onsubmit="calculate(event);">
+                <tr>
+                    <th>subject</th>
+                    <th>totalmarks</th>
+                    <th>obtainedmarks</th>
+                    <th>percentage</th>
+                    <th>grade</th>
+                </tr>
+
+                <tr>
+                    <th>English</th>
+                    <td><input type="number" name="" id="ENG" placeholder="100" readonly></td>
+                    <td><input type="number" name="" id="English" min="1" max="100" required placeholder="outof100">
+                    </td>
+                    <td><span class="percentage"></span></td>
+                    <td><span class="grade"></span></td>
+                </tr>
+
+                <tr>
+                    <th>urdu</th>
+                    <td><input type="number" name="" id="URDU" placeholder="100" readonly></td>
+                    <td><input type="number" min="1" max="100" required id="urdu" placeholder="outof100"></td>
+                    <td><span class="percentage2"></span></td>
+                    <td><span class="grade2"></span></td>
+                </tr>
+
+                <tr>
+                    <th>math</th>
+                    <td><input type="number" name="" id="MATH" placeholder="100" readonly></td>
+                    <td><input type="number" min="1" max="100" required name="" id="math" placeholder="outof100"></td>
+                    <td><span class="percentage3"></span></td>
+                    <td><span class="grade3"></span></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><button>submit</button></td>
+                    <td><input id="reset" type="reset"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </form>
+        </table>
+        <div class="display">
+            <div type="text" id="totalmarks"></div>
+            
+            <div type="text" id="obtainedmarks"></div>
+            <div type="text" id="Percentage"></div>
+            <div type="text" id="Grade"></div>
+            
+        </div>
+    </div>
+
+
+
+    <script>
+        function result() {
+            let English = document.querySelector("#English").value;
+            let urdu = document.querySelector("#urdu").value;
+            let math = document.querySelector("#math").value;
+
+
+
+            let result = English / 100 * 100;
+            let result2 = urdu / 100 * 100;
+            let result3 = math / 100 * 100;
+
+
+            let percentage = document.querySelector(".percentage").innerHTML = result;
+            let percentage2 = document.querySelector(".percentage2").innerHTML = result2;
+            let percentage3 = document.querySelector(".percentage3").innerHTML = result3;
+
+            if (percentage <= 100 && percentage >= 80) {
+                document.querySelector(".grade").innerHTML = " A1-GRADE!"
+            } else if (percentage <= 79 && percentage >= 70) {
+                document.querySelector(".grade").innerHTML = " A-GRADE! "
+            } else if (percentage <= 69 && percentage >= 60) {
+                document.querySelector(".grade").innerHTML = " B-GRADE!"
+            } else if (percentage <= 59 && percentage >= 50) {
+                document.querySelector(".grade").innerHTML = " C-GRADE!"
+            } else if (percentage <= 49 && percentage >= 40) {
+                document.querySelector(".grade").innerHTML = " D-GRADE"
+            } else if (percentage <= 39 && percentage >= 30) {
+                document.querySelector(".grade").innerHTML = " E-GRADE!"
+            } else {
+                document.querySelector(".grade").innerHTML = "fail "
+            }
+
+
+
+
+            if (percentage2 <= 100 && percentage2 >= 80) {
+                document.querySelector(".grade2").innerHTML = " A1-GRADE!"
+            } else if (percentage2 <= 79 && percentage2 >= 70) {
+                document.querySelector(".grade2").innerHTML = " A-GRADE! "
+            } else if (percentage2 <= 69 && percentage2 >= 60) {
+                document.querySelector(".grade2").innerHTML = " B-GRADE!"
+            } else if (percentage2 <= 59 && percentage2 >= 50) {
+                document.querySelector(".grade2").innerHTML = " C-GRADE!"
+            } else if (percentage2 <= 49 && percentage2 >= 40) {
+                document.querySelector(".grade2").innerHTML = " D-GRADE"
+            } else if (percentage2 <= 39 && percentage2 >= 30) {
+                document.querySelector(".grade2").innerHTML = " E-GRADE!"
+            } else {
+                document.querySelector(".grade2").innerHTML = "fail "
+            }
+
+
+
+
+            if (percentage3 <= 100 && percentage3 >= 80) {
+                document.querySelector(".grade3").innerHTML = " A1-GRADE!"
+            } else if (percentage3 <= 79 && percentage3 >= 70) {
+                document.querySelector(".grade3").innerHTML = " A-GRADE! "
+            } else if (percentage3 <= 69 && percentage3 >= 60) {
+                document.querySelector(".grade3").innerHTML = " B-GRADE!"
+            } else if (percentage3 <= 59 && percentage3 >= 50) {
+                document.querySelector(".grade3").innerHTML = " C-GRADE!"
+            } else if (percentage3 <= 49 && percentage3 >= 40) {
+                document.querySelector(".grade3").innerHTML = " D-GRADE"
+            } else if (percentage3 <= 39 && percentage3 >= 30) {
+                document.querySelector(".grade3").innerHTML = " E-GRADE!"
+            } else {
+                document.querySelector(".grade3").innerHTML = "fail "
+            }
+
+
+        }
+
+        function calculate(event) {
+            let English = +(document.querySelector("#English").value);
+            let urdu = +(document.querySelector("#urdu").value);
+            let math = +(document.querySelector("#math").value);
+
+            event.preventDefault();
+
+            let calculate = English + urdu + math;
+            let percentage = calculate / 300 * 100;
+
+
+
+            let totalmarks = document.querySelector("#totalmarks").innerHTML = "TOTAL MARKS = " + 300;
+            let obtainedmarks = document.querySelector("#obtainedmarks").innerHTML = `MARKS OBTAINED = ${calculate}`;
+            let Percentage = document.querySelector("#Percentage").innerHTML = "PERCENTAGE = " + percentage + "%";
+
+            if (percentage <= 100 && percentage >= 80) {
+                document.querySelector("#Grade").innerHTML = "YOU GOT A1-GRADE!"
+            } else if (percentage <= 79 && percentage >= 70) {
+                document.querySelector("#Grade").innerHTML = "YOU GOT A-GRADE! "
+            } else if (percentage <= 69 && percentage >= 60) {
+                document.querySelector("#Grade").innerHTML = "YOU GOT B-GRADE!"
+            } else if (percentage <= 59 && percentage >= 50) {
+                document.querySelector("#Grade").innerHTML = "YOU GOT C-GRADE!"
+            } else if (percentage <= 49 && percentage >= 40) {
+                document.querySelector("#Grade").innerHTML = "YOU GOT D-GRADE"
+            } else if (percentage <= 39 && percentage >= 30) {
+                document.querySelector("#Grade").innerHTML = "YOU GOT E-GRADE!"
+            } else {
+                document.querySelector("#Grade").innerHTML = "fail "
+            }
+
+            
+
+
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
